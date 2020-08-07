@@ -47,6 +47,7 @@ class Hangman extends Component {
     return "abcdefghijklmnopqrstuvwxyz".split("").map(ltr => (
       <button
         value={ltr}
+        key={ltr}
         onClick={this.handleGuess}
         disabled={this.state.guessed.has(ltr)}
       >
