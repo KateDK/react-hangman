@@ -20,6 +20,7 @@ class Hangman extends Component {
     super(props);
     this.state = { nWrong: 0, guessed: new Set(), answer: randomWord() };
     this.handleGuess = this.handleGuess.bind(this);
+    this.restart = this.restart.bind(this);
   }
 
   /** guessedWord: show current-state of word:
@@ -57,6 +58,10 @@ class Hangman extends Component {
     ));
   }
 
+  restart(){
+    this.setState({nWrong: 0, guessed: new Set(), answer: randomWord() })
+  }
+
   /** render: render game */
   render() {
     const {nWrong,answer} = this.state;
@@ -72,6 +77,7 @@ class Hangman extends Component {
           <span>
             <p>GAME OVER</p>
             <p> answer: {answer}</p>
+            <button onClick={this.restart}>Restart</button>
           </span>
           :
           <p className='Hangman-btns'>{this.generateButtons()}</p>
