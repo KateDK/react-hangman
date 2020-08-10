@@ -60,7 +60,7 @@ class Hangman extends Component {
   render() {
     const {nWrong,answer,guessed} = this.state;
     const {maxWrong} = this.props;
-    console.log(">>>>>>>",this.guessedWord().join(""));
+
     return (
       <div className='Hangman'>
         <h1>Hangman</h1>
