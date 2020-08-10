@@ -9,6 +9,7 @@ import img5 from "./5.jpg";
 import img6 from "./6.jpg";
 import {randomWord} from './words';
 import AlphaButtons from './AlphaButtons';
+import EndGame from './EndGame';
 
 class Hangman extends Component {
   /** by default, allow 6 guesses and use provided gallows images. */
@@ -19,9 +20,12 @@ class Hangman extends Component {
 
   constructor(props) {
     super(props);
+
     this.state = { nWrong: 0, guessed: new Set(), answer: randomWord() };
+
     this.handleGuess = this.handleGuess.bind(this);
     this.restart = this.restart.bind(this);
+    this.handleRestart = this.handleRestart.bind(this);
   }
 
   /** guessedWord: show current-state of word:
@@ -44,6 +48,9 @@ class Hangman extends Component {
       nWrong: st.nWrong + (st.answer.includes(ltr) ? 0 : 1)
     }));
   }
+  handleRestart(){
+    this.restart();
+  }
 
   restart(){
     this.setState({nWrong: 0, guessed: new Set(), answer: randomWord() })
@@ -53,22 +60,23 @@ class Hangman extends Component {
   render() {
     const {nWrong,answer,guessed} = this.state;
     const {maxWrong} = this.props;
+    console.log(">>>>>>>",this.guessedWord().join(""));
     return (
       <div className='Hangman'>
         <h1>Hangman</h1>
         <img src={this.props.images[nWrong]} alt={`${nWrong} out of ${maxWrong} guesses`} />
+
         <p>Wrong guesses: {nWrong}</p>
+
         <p className='Hangman-word'>{this.guessedWord()}</p>
         {
-          nWrong === maxWrong ?
-          <span>
-            <p>GAME OVER</p>
-            <p> answer: {answer}</p>
-            <button onClick={this.restart}>Restart</button>
-          </span>
+          (nWrong === maxWrong)  || (this.guessedWord().join('') === answer)?
+          <EndGame win={this.guessedWord().join('') === answer} handleRestart={this.handleRestart} answer={answer}/>
+
           :
         <AlphaButtons guessed={guessed} handleGuess={this.handleGuess}/>
         }
+
       </div>
     );
   }
