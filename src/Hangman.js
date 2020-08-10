@@ -8,6 +8,7 @@ import img4 from "./4.jpg";
 import img5 from "./5.jpg";
 import img6 from "./6.jpg";
 import {randomWord} from './words';
+import AlphaButtons from './AlphaButtons';
 
 class Hangman extends Component {
   /** by default, allow 6 guesses and use provided gallows images. */
@@ -64,7 +65,7 @@ class Hangman extends Component {
 
   /** render: render game */
   render() {
-    const {nWrong,answer} = this.state;
+    const {nWrong,answer,guessed} = this.state;
     const {maxWrong} = this.props;
     return (
       <div className='Hangman'>
@@ -80,7 +81,7 @@ class Hangman extends Component {
             <button onClick={this.restart}>Restart</button>
           </span>
           :
-          <p className='Hangman-btns'>{this.generateButtons()}</p>
+        <AlphaButtons guessed={guessed} handleGuess={this.handleGuess}/>
         }
       </div>
     );
