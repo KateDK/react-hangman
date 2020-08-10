@@ -24,13 +24,6 @@
   font-size: 2rem;
 }
 
-.Hangman-btns {
-  text-align: center;
-  display: inline-block;
-  width: 250px;
-  margin-top: 0;
-}
-
 .Hangman button {
   border: none;
   font-family: inherit;
