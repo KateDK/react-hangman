@@ -52,6 +52,12 @@ class Hangman extends Component {
     this.restart();
   }
 
+  gameEnd = ()=>{
+    const {nWrong,answer} = this.state;
+    const {maxWrong} = this.props;
+    return (this.guessedWord().join('') === answer) || nWrong === maxWrong
+  }
+
   restart(){
     this.setState({nWrong: 0, guessed: new Set(), answer: randomWord() })
   }
@@ -60,7 +66,7 @@ class Hangman extends Component {
   render() {
     const {nWrong,answer,guessed} = this.state;
     const {maxWrong} = this.props;
-
+    const endGame = this.gameEnd();
     return (
       <div className='Hangman'>
         <h1>Hangman</h1>
@@ -70,9 +76,8 @@ class Hangman extends Component {
 
         <p className='Hangman-word'>{this.guessedWord()}</p>
         {
-          (nWrong === maxWrong)  || (this.guessedWord().join('') === answer)?
+          endGame?
           <EndGame win={this.guessedWord().join('') === answer} handleRestart={this.handleRestart} answer={answer}/>
-
           :
         <AlphaButtons guessed={guessed} handleGuess={this.handleGuess}/>
         }
