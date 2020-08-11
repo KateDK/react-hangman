@@ -18,20 +18,13 @@ class Hangman extends Component {
     images: [img0, img1, img2, img3, img4, img5, img6]
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = { nWrong: 0, guessed: new Set(), answer: randomWord() };
-
-    this.handleGuess = this.handleGuess.bind(this);
-    this.restart = this.restart.bind(this);
-    this.handleRestart = this.handleRestart.bind(this);
-  }
+  state = { nWrong: 0, guessed: new Set(), answer: randomWord()
+  };
 
   /** guessedWord: show current-state of word:
     if guessed letters are {a,p,e}, show "app_e" for "apple"
   */
-  guessedWord() {
+  guessedWord = () => {
     return this.state.answer
       .split("")
       .map(ltr => (this.state.guessed.has(ltr) ? ltr : "_"));
@@ -41,24 +34,24 @@ class Hangman extends Component {
     - add to guessed letters
     - if not in answer, increase number-wrong guesses
   */
-  handleGuess(evt) {
+  handleGuess = (evt) => {
     let ltr = evt.target.value;
     this.setState(st => ({
       guessed: st.guessed.add(ltr),
       nWrong: st.nWrong + (st.answer.includes(ltr) ? 0 : 1)
     }));
   }
-  handleRestart(){
+  handleRestart = () => {
     this.restart();
   }
 
-  gameEnd = ()=>{
+  gameEnd = () => {
     const {nWrong,answer} = this.state;
     const {maxWrong} = this.props;
     return (this.guessedWord().join('') === answer) || nWrong === maxWrong
   }
 
-  restart(){
+  restart = () => {
     this.setState({nWrong: 0, guessed: new Set(), answer: randomWord() })
   }
 
