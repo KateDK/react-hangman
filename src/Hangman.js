@@ -41,9 +41,6 @@ class Hangman extends Component {
       nWrong: st.nWrong + (st.answer.includes(ltr) ? 0 : 1)
     }));
   }
-  handleRestart = () => {
-    this.restart();
-  }
 
   gameEnd = () => {
     const {nWrong,answer} = this.state;
