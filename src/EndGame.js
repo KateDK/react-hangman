@@ -5,7 +5,7 @@ const EndGame = (props) => {
   return (<div className="EndGame">
     {win ?
     <span>
-      <h2>🎉🎉🎉 Great Job! You Win!!! 🎉🎉🎉</h2>
+      <h2>🎉🎉🎉💥You Win💥🎉🎉🎉</h2>
     </span>
     :
     <span>
