@@ -49,3 +49,16 @@
   color: #eeeeee;
   box-shadow: 0 6px #9e9e9e;
 }
+
+#reset {
+  width: auto;
+  background: darkslateblue;
+  box-shadow: 0 6px rgb(44, 37, 94);
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15px;
+}
+#reset:hover {
+  background: rgb(44, 37, 94);
+}
