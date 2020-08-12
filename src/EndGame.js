@@ -1,5 +1,4 @@
 import React from 'react';
-import './EndGame.css';
 
 const EndGame = (props) => {
   const {win,handleRestart,answer} = props;
@@ -13,7 +12,6 @@ const EndGame = (props) => {
       <h2>GAME OVER</h2>
       <p> answer: {answer}</p>
     </span>}
-    <button onClick={handleRestart}>Restart</button>
     </div>);
 }
 

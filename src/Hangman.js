@@ -74,6 +74,7 @@ class Hangman extends Component {
           :
         <AlphaButtons guessed={guessed} handleGuess={this.handleGuess}/>
         }
+        <button id="reset" onClick={this.restart}>Reset Game</button>
 
       </div>
     );
